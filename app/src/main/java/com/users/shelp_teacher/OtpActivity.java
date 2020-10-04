@@ -73,6 +73,11 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
                         if (response.code() == 200) {
                             OtpResponse res = response.body();
                             Toast.makeText(OtpActivity.this, res.getMessage(), Toast.LENGTH_LONG).show();
+                            Sharedprefs.saveSharedsetting(OtpActivity.this,"Clip" ,"false");
+                            Sharedprefs.sharedprefsave(getApplicationContext(), res.getUsername(),res.getToken());
+                            Intent isverified = new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(isverified);
+                            finish();
                         } else {
                             String s = response.errorBody().string();
                             JSONObject jsonObject = new JSONObject(s);

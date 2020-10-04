@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OtpActivity"></activity>
-        <activity android:name=".SignupActivity">
+        <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".OtpActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
