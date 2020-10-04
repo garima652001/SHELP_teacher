@@ -1,14 +1,20 @@
 package com.users.shelp_teacher.Api;
 
 import com.users.shelp_teacher.Request.Signup;
+import com.users.shelp_teacher.Request.Verify;
+import com.users.shelp_teacher.Response.OtpResponse;
 import com.users.shelp_teacher.Response.SignupResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
 public interface api {
 
     @PUT("signup")
     Call<SignupResponse> createuser(@Body Signup create);
+
+    @POST("signup/otp")
+    Call<OtpResponse> verifymail(@Body Verify otp_ver);
 }

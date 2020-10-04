@@ -96,11 +96,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                         if (response.code() == 201) {
                             SignupResponse res = response.body();
                             Toast.makeText(SignupActivity.this, res.getMessage(), Toast.LENGTH_LONG).show();
-                            /*Intent intent= new Intent(SignupActivity.this, otp.class);
+                            Intent intent= new Intent(SignupActivity.this, OtpActivity.class);
                             intent.putExtra("Token",res.getToken());
                             intent.putExtra("email",email);
                             startActivity(intent);
-                            Log.d("token", res.getToken());*/
+                            Log.d("token", res.getToken());
                         } else {
                             String s = response.errorBody().string();
                             JSONObject jsonObject = new JSONObject(s);
