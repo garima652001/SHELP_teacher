@@ -1,8 +1,10 @@
 package com.users.shelp_teacher.Api;
 
+import com.users.shelp_teacher.Request.Resendotp;
 import com.users.shelp_teacher.Request.Signup;
 import com.users.shelp_teacher.Request.Verify;
 import com.users.shelp_teacher.Response.OtpResponse;
+import com.users.shelp_teacher.Response.ResendOtpResponse;
 import com.users.shelp_teacher.Response.SignupResponse;
 
 import retrofit2.Call;
@@ -17,4 +19,7 @@ public interface api {
 
     @POST("signup/otp")
     Call<OtpResponse> verifymail(@Body Verify otp_ver);
+
+    @POST("signup/otp-resend")
+    Call<ResendOtpResponse> resend(@Body Resendotp resend);
 }

@@ -10,8 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.users.shelp_teacher.Api.Retroclient;
+import com.users.shelp_teacher.Request.Resendotp;
 import com.users.shelp_teacher.Request.Verify;
 import com.users.shelp_teacher.Response.OtpResponse;
+import com.users.shelp_teacher.Response.ResendOtpResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,11 +33,13 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
         Intent intent= getIntent();
+        resend=findViewById(R.id.tvresend_otp);
         token = intent.getStringExtra("Token");
         email=intent.getStringExtra("email");
         et_otp= findViewById(R.id.etotp);
         findViewById(R.id.btn_confirmemail).setOnClickListener(this);
         findViewById(R.id.tv_login1).setOnClickListener(this);
+        findViewById(R.id.tvresend_otp).setOnClickListener(this);
     }
 
     @Override
@@ -48,8 +52,45 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
 
             case R.id.tv_login1:
                 break;
+
+            case R.id.tvresend_otp:
+                resend.setEnabled(false);
+
+                resend.postDelayed(new Runnable() {
+                    public void run() {
+                        resend.setEnabled(true);
+                    }
+                }, 3*60*100);
+                resend();
+                break;
         }
     }
+
+    private void resend() {
+        Resendotp reotp=new Resendotp(token,email);
+        Call<ResendOtpResponse> call1=Retroclient
+                .getInstance()
+                .getapi()
+                .resend(reotp);
+
+        call1.enqueue(new Callback<ResendOtpResponse>() {
+            @Override
+            public void onResponse(Call<ResendOtpResponse> call, Response<ResendOtpResponse> response) {
+                assert response.body() != null;
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "New OTP has been sent to your mail", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResendOtpResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
+            }
+            });
+        }
 
     private void verify() {
         String otp=et_otp.getText().toString();
