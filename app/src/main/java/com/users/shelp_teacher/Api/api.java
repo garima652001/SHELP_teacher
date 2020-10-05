@@ -1,8 +1,10 @@
 package com.users.shelp_teacher.Api;
 
+import com.users.shelp_teacher.Request.Login;
 import com.users.shelp_teacher.Request.Resendotp;
 import com.users.shelp_teacher.Request.Signup;
 import com.users.shelp_teacher.Request.Verify;
+import com.users.shelp_teacher.Response.LoginResponse;
 import com.users.shelp_teacher.Response.OtpResponse;
 import com.users.shelp_teacher.Response.ResendOtpResponse;
 import com.users.shelp_teacher.Response.SignupResponse;
@@ -22,4 +24,7 @@ public interface api {
 
     @POST("signup/otp-resend")
     Call<ResendOtpResponse> resend(@Body Resendotp resend);
+
+    @POST("login")
+    Call<LoginResponse> loginUser (@Body Login log);
 }

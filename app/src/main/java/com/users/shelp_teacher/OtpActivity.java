@@ -51,6 +51,8 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case R.id.tv_login1:
+                Intent intent=new Intent(this,LoginActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.tvresend_otp:
