@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                     String token = response.body().getToken();
                     Toast.makeText(getApplicationContext(), token, Toast.LENGTH_LONG).show();
                     Sharedprefs.saveSharedsetting(LoginActivity.this,"Clip" ,"false");
-                    Sharedprefs.sharedprefsave(getApplicationContext(), response.body().getUsername(),token);
+                    Sharedprefs.sharedprefsave(getApplicationContext(), response.body().getUsername(),token, response.body().getUserId());
                     Intent islogged = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(islogged);
                     finish();

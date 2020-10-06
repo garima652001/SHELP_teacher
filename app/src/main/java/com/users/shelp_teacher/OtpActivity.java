@@ -8,18 +8,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.users.shelp_teacher.Api.Retroclient;
 import com.users.shelp_teacher.Request.Resendotp;
 import com.users.shelp_teacher.Request.Verify;
 import com.users.shelp_teacher.Response.OtpResponse;
 import com.users.shelp_teacher.Response.ResendOtpResponse;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -117,7 +113,7 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
                             OtpResponse res = response.body();
                             Toast.makeText(OtpActivity.this, res.getMessage(), Toast.LENGTH_LONG).show();
                             Sharedprefs.saveSharedsetting(OtpActivity.this,"Clip" ,"false");
-                            Sharedprefs.sharedprefsave(getApplicationContext(), res.getUsername(),res.getToken());
+                            Sharedprefs.sharedprefsave(getApplicationContext(), res.getUsername(),res.getToken(),res.getUserId());
                             Intent isverified = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(isverified);
                             finish();

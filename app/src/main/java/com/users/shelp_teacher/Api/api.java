@@ -4,15 +4,20 @@ import com.users.shelp_teacher.Request.Login;
 import com.users.shelp_teacher.Request.Resendotp;
 import com.users.shelp_teacher.Request.Signup;
 import com.users.shelp_teacher.Request.Verify;
+import com.users.shelp_teacher.Response.CourseResponse;
 import com.users.shelp_teacher.Response.LoginResponse;
 import com.users.shelp_teacher.Response.OtpResponse;
 import com.users.shelp_teacher.Response.ResendOtpResponse;
 import com.users.shelp_teacher.Response.SignupResponse;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 
 public interface api {
 
@@ -27,4 +32,18 @@ public interface api {
 
     @POST("login")
     Call<LoginResponse> loginUser (@Body Login log);
+
+    @Multipart
+    @POST("creator/create-course")
+    Call<CourseResponse> uploadPhoto(
+            @Part("name") RequestBody name,
+            @Part("title") RequestBody title,
+            @Part("discription") RequestBody description,
+            @Part("category") RequestBody category,
+            @Part("_id") RequestBody _id,
+            @Part("requirement") RequestBody requirement,
+            @Part MultipartBody.Part photo,
+            @Part MultipartBody.Part video
+    );
+
 }
