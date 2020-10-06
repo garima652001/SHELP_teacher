@@ -1,14 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.Createfragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp">
+
+            <TextView
+                android:id="@+id/filepath"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/averia_gruesa_libre"
+                android:gravity="center_horizontal"
+                android:text="Create new course"
+                android:textSize="24sp" />
+            <EditText
+                android:id="@+id/user_idpref"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btn_choose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="85dp"
+                android:layout_below="@+id/course_req"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/averia_gruesa_libre"
+                android:text="Choose files"
+                android:background="@drawable/bg"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                />
+            <Button
+                android:id="@+id/btn_create"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="85dp"
+                android:layout_below="@+id/btn_choose"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/averia_gruesa_libre"
+                android:text="Upload course"
+                android:background="@drawable/bg"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_creatorname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/filepath"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/droid_sans"
+                android:text="Enter your name"
+                android:textSize="16sp" />
+
+
+            <EditText
+                android:id="@+id/creatorname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_creatorname"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background"
+                android:fontFamily="@font/droid_sans"
+                android:hint="Enter your name"
+                android:padding="10dp" />
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/creatorname"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/droid_sans"
+                android:text="Enter course title"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/course_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background"
+                android:fontFamily="@font/droid_sans"
+                android:hint="Enter course title"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/tv_coursedes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlcategory"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/droid_sans"
+                android:text="Enter course description"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/course_des"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_coursedes"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background"
+                android:fontFamily="@font/droid_sans"
+                android:hint="Enter course description"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/tv_coursereq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/course_des"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/droid_sans"
+                android:text="What are the pre-requisites for this course?"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/course_req"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_coursereq"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background"
+                android:fontFamily="@font/droid_sans"
+                android:hint="Enter pre-requisites"
+                android:padding="10dp" />
+
+            <RelativeLayout
+                android:id="@+id/rlcategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/course_title">
+
+                <TextView
+                    android:id="@+id/tv_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/droid_sans"
+                    android:text="Choose category"
+                    android:textSize="16sp" />
+                <LinearLayout
+                    android:id="@+id/ll_1"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/tv_category"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_dev"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/background"
+                        android:fontFamily="@font/averia_gruesa_libre"
+                        android:padding="10dp"
+                        android:text="Development"
+                        android:textAllCaps="false" />
+
+                    <Button
+                        android:id="@+id/btn_design"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/background"
+                        android:fontFamily="@font/averia_gruesa_libre"
+                        android:padding="10dp"
+                        android:text="Designing"
+                        android:textAllCaps="false" />
+
+                    <Button
+                        android:id="@+id/btn_photography"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/background"
+                        android:fontFamily="@font/averia_gruesa_libre"
+                        android:padding="10dp"
+                        android:text="Photography"
+                        android:textAllCaps="false" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_below="@+id/tv_category"
+                    android:layout_toRightOf="@+id/ll_1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <Button
+                        android:id="@+id/btn_ml"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/background"
+                        android:fontFamily="@font/averia_gruesa_libre"
+                        android:padding="10dp"
+                        android:text="ML"
+                        android:textAllCaps="false" />
+
+                    <Button
+                        android:id="@+id/btn_react"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/background"
+                        android:fontFamily="@font/averia_gruesa_libre"
+                        android:padding="10dp"
+                        android:text="React"
+                        android:textAllCaps="false" />
+
+                    <Button
+                        android:id="@+id/btn_node"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/background"
+                        android:fontFamily="@font/averia_gruesa_libre"
+                        android:padding="10dp"
+                        android:text="Node JS"
+                        android:textAllCaps="false" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
 </FrameLayout>
