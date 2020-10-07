@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="20dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/cimg"
+                android:layout_width="160dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/ctitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/cimg"
+                android:fontFamily="@font/droid_sans"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/teachername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ctitle"
+                android:layout_gravity="start"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@+id/cimg"
+                android:fontFamily="@font/droid_sans"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/teachername"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="16dp"
+                android:layout_toRightOf="@+id/cimg" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/teachername"
+                android:layout_toRightOf="@+id/cimg"
+                android:numStars="5"
+                android:scaleX="0.30"
+                android:scaleY="0.30"
+                android:stepSize="0.1"
+                android:theme="@style/Widget.AppCompat.RatingBar" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

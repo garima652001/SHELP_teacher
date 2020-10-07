@@ -3,12 +3,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Homefragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    tools:context=".Fragments.Homefragment"
+    android:background="#fff">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/tv_shelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="15dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_group_579"
+                android:paddingHorizontal="10dp"
+                android:scaleType="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout"
+            android:layout_below="@id/tv_shelp"
+            android:layout_width="match_parent"
+            android:layout_height="155dp"
+            android:background="@drawable/homebg">
+            <Button
+                android:id="@+id/btn_directcreate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create new Course"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:fontFamily="@font/droid_sans"
+                android:background="@drawable/bg"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="98dp"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_mycourses"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/linearlayout"
+            android:layout_height="wrap_content"
+            android:text="My previous courses"
+            android:layout_marginHorizontal="10dp"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:fontFamily="@font/droid_sans"
+            android:layout_marginTop="20dp"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@id/tv_mycourses"
+            android:layout_marginTop="20dp"
+            android:id="@+id/recyclerv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
 
 </FrameLayout>
