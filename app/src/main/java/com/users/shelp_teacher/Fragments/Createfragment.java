@@ -167,8 +167,8 @@ public class Createfragment extends Fragment {
                 Intent myfileintent = new Intent();
                 myfileintent.setAction(Intent.ACTION_GET_CONTENT);
                 myfileintent.setType("*/*");
-                myfileintent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                startActivityForResult(Intent.createChooser(myfileintent, "photo"), 10);
+               // myfileintent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                startActivityForResult(Intent.createChooser(myfileintent, "image"), 10);
             }
         });
     }
@@ -186,17 +186,10 @@ public class Createfragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        final Uri uri;
         if(resultCode==RESULT_OK&&requestCode==10&&data!=null) {
-
-            ClipData clipData= data.getClipData();
-            final ArrayList<Uri> uris= new ArrayList<Uri>();
-            if (clipData != null) {
-                for(int i=0; i<clipData.getItemCount();i++)
-                {
-                    ClipData.Item item= clipData.getItemAt(i);
-                    Uri uri= item.getUri();
-                    uris.add(uri);
-                }
+            {
+                uri =data.getData();
             }
             upload.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -205,7 +198,7 @@ public class Createfragment extends Fragment {
                     progress.setTitle("Uploading");
                     progress.setMessage("Please Wait...");
                     progress.show();
-                    uploadfile(uris.get(0),uris.get(1));
+                    uploadfile(uri);
                 }
             });
         }
@@ -224,7 +217,7 @@ public class Createfragment extends Fragment {
         return MultipartBody.Part.createFormData(partname,originalfile.getName(),filepart);
     }
 
-    private void uploadfile(Uri uri,Uri urivid) {
+    private void uploadfile(Uri uri) {
         Call<CourseResponse> call= Retroclient.getInstance().getapi().uploadPhoto(
                 createStringPart(et_name.getText().toString()),
                 createStringPart(et_title.getText().toString()),
@@ -232,8 +225,7 @@ public class Createfragment extends Fragment {
                 createStringPart(category),
                 createStringPart(id),
                 createStringPart(et_req.getText().toString()),
-                preparefilePart("photo",uri),
-                preparefilePart("video",urivid));
+                preparefilePart("image",uri));
 
         call.enqueue(new Callback<CourseResponse>() {
             @Override
@@ -260,6 +252,7 @@ public class Createfragment extends Fragment {
             @Override
             public void onFailure(Call<CourseResponse> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage(),Toast.LENGTH_LONG).show();
+                progress.dismiss();
             }
         });
     }

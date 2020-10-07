@@ -55,8 +55,7 @@ public interface api {
             @Part("category") RequestBody category,
             @Part("_id") RequestBody _id,
             @Part("requirement") RequestBody requirement,
-            @Part MultipartBody.Part photo,
-            @Part MultipartBody.Part video
+            @Part MultipartBody.Part image
     );
 
 }
