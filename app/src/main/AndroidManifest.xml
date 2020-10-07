@@ -3,8 +3,8 @@
     package="com.users.shelp_teacher">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".Resetpassword"></activity>
+        <activity android:name=".Resetotpcheck" />
+        <activity android:name=".Resetotpsend" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".OtpActivity" />
         <activity android:name=".MainActivity">

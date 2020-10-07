@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OtpActivity">
+    tools:context=".Resetotpcheck">
 
     <TextView
         android:id="@+id/textView6"
@@ -12,7 +12,7 @@
         android:layout_height="81dp"
         android:layout_marginTop="84dp"
         android:fontFamily="@font/droid_sans"
-        android:text="Confirm your Email"
+        android:text="Reset your Password"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,11 +22,11 @@
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="300dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
         android:layout_marginTop="80dp"
-        android:text="Enter the OTP we have send on your  email"
+        android:text="Enter the OTP we have send you on your email"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <EditText
-        android:id="@+id/etotp"
+        android:id="@+id/etotpreset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
@@ -56,55 +56,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-
-    <TextView
-        android:id="@+id/notreceived"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="60dp"
-        android:layout_marginTop="45dp"
-        android:text="Didn't receive OTP?"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etotp" />
-
-    <TextView
-        android:id="@+id/tvresend_otp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="80dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:textColor="#425FED"
-        android:layout_marginTop="45dp"
-        android:text=" Resend"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/notreceived"
-        app:layout_constraintTop_toBottomOf="@+id/etotp" />
-
     <Button
-        android:id="@+id/btn_confirmemail"
+        android:id="@+id/btn_requestotpcheck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/bg"
-        android:text="Confirm email"
+        android:text="Reset password"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvresend_otp" />
+        app:layout_constraintTop_toBottomOf="@+id/etotpreset" />
 
     <TextView
-        android:id="@+id/tv_login1"
+        android:id="@+id/tv_login2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="45dp"
         android:text="Already have an account ? Login"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_confirmemail" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_requestotpcheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,10 @@
 package com.users.shelp_teacher.Api;
 
+import com.users.shelp_teacher.Request.Checkotp;
 import com.users.shelp_teacher.Request.Login;
 import com.users.shelp_teacher.Request.Resendotp;
+import com.users.shelp_teacher.Request.Resetotp;
+import com.users.shelp_teacher.Request.Resetpass;
 import com.users.shelp_teacher.Request.Signup;
 import com.users.shelp_teacher.Request.Verify;
 import com.users.shelp_teacher.Response.CourseResponse;
@@ -12,6 +15,7 @@ import com.users.shelp_teacher.Response.SignupResponse;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Multipart;
@@ -32,6 +36,15 @@ public interface api {
 
     @POST("login")
     Call<LoginResponse> loginUser (@Body Login log);
+
+    @POST("signup/resetOtp")
+    Call<ResponseBody> sendotp(@Body Resetotp reset);
+
+    @POST("signup/checkOtp")
+    Call<ResponseBody> checkotp(@Body Checkotp check);
+
+    @POST("signup/reset-password")
+    Call<ResponseBody> resetpass(@Body Resetpass reset);
 
     @Multipart
     @POST("creator/create-course")

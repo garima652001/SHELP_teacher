@@ -51,13 +51,22 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        findViewById(R.id.tv_reset).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginActivity.this, Resetotpsend.class);
+                finish();
+                startActivity(intent);
+
+            }
+        });
     }
 
     private void LoginUser() {
         emailtxt = email.getText().toString();
         passwordtxt = password.getText().toString();
         if (emailtxt.isEmpty()) {
-            email.setError("Email cannot be empty");
+            email.setError("Email is required");
             email.requestFocus();
             return;
         }
@@ -67,12 +76,12 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
         if (passwordtxt.isEmpty()) {
-            password.setError("Password cannot be empty");
+            password.setError("Password is required");
             password.requestFocus();
             return;
         }
-        if (passwordtxt.length() < 6) {
-            password.setError("Password should atleast 6 char long");
+        if (passwordtxt.length() < 5) {
+            password.setError("Password should be atleast 5 char long");
             password.requestFocus();
             return;
         } else {
@@ -103,7 +112,6 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), response.body().getMessage() + " " + response.body().getUsername() + " " + response.body().getToken(), Toast.LENGTH_LONG).show();
                     String token = response.body().getToken();
-                    Toast.makeText(getApplicationContext(), token, Toast.LENGTH_LONG).show();
                     Sharedprefs.saveSharedsetting(LoginActivity.this,"Clip" ,"false");
                     Sharedprefs.sharedprefsave(getApplicationContext(), response.body().getUsername(),token, response.body().getUserId());
                     Intent islogged = new Intent(getApplicationContext(),MainActivity.class);
