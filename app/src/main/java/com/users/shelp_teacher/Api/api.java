@@ -2,6 +2,7 @@ package com.users.shelp_teacher.Api;
 
 import com.users.shelp_teacher.Request.Checkotp;
 import com.users.shelp_teacher.Request.Login;
+import com.users.shelp_teacher.Request.Mycourses;
 import com.users.shelp_teacher.Request.Resendotp;
 import com.users.shelp_teacher.Request.Resetotp;
 import com.users.shelp_teacher.Request.Resetpass;
@@ -57,5 +58,9 @@ public interface api {
             @Part("requirement") RequestBody requirement,
             @Part MultipartBody.Part image
     );
+
+    @POST("teacher/uploads")
+    Call<ResponseBody> mycourses(@Body Mycourses display);
+
 
 }
