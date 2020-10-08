@@ -19,7 +19,7 @@ import android.content.SharedPreferences;
             editor.putString(setname,setvalue);
             editor.apply();
         }
-        public static void sharedprefsave(Context ctx, String name,String token,String userid){
+        public static void sharedprefsave(Context ctx, String name,String token,String userid,String email){
             SharedPreferences prefs= ctx.getSharedPreferences("Name",0);
             SharedPreferences.Editor prefedit= prefs.edit();
             prefedit.putString("Name", name);
@@ -32,6 +32,11 @@ import android.content.SharedPreferences;
             SharedPreferences.Editor prefedit_id= prefs_id.edit();
             prefedit_id.putString("Id", userid);
             prefedit_id.commit();
+            SharedPreferences prefs_id1= ctx.getSharedPreferences("Email",0);
+            SharedPreferences.Editor prefedit_id1= prefs_id1.edit();
+            prefedit_id1.putString("Email", email);
+            prefedit_id1.commit();
+
         }
     }
 

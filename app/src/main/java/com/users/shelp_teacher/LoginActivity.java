@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), response.body().getMessage() + " " + response.body().getUsername() + " " + response.body().getToken(), Toast.LENGTH_LONG).show();
                     String token = response.body().getToken();
                     Sharedprefs.saveSharedsetting(LoginActivity.this,"Clip" ,"false");
-                    Sharedprefs.sharedprefsave(getApplicationContext(), response.body().getUsername(),token, response.body().getUserId());
+                    Sharedprefs.sharedprefsave(getApplicationContext(), response.body().getUsername(),token, response.body().getUserId(),emailtxt);
                     Intent islogged = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(islogged);
                     finish();

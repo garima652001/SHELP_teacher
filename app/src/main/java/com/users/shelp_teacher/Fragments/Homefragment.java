@@ -48,6 +48,9 @@ public class Homefragment extends Fragment {
 
         SharedPreferences preferences = getContext().getSharedPreferences("Id", 0);
         id = preferences.getString("Id", null);
+        SharedPreferences preference = getContext().getSharedPreferences("Token", 0);
+        final String header = "Bearer " + preference.getString("Token", null);
+
         btn_createcourse= view.findViewById(R.id.btn_directcreate);
         btn_createcourse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +66,7 @@ public class Homefragment extends Fragment {
         Call<ResponseBody> call = Retroclient
                 .getInstance()
                 .getapi()
-                .mycourses(mycourses);
+                .mycourses(mycourses, header);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override

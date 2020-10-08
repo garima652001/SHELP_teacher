@@ -113,7 +113,7 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
                             OtpResponse res = response.body();
                             Toast.makeText(OtpActivity.this, res.getMessage(), Toast.LENGTH_LONG).show();
                             Sharedprefs.saveSharedsetting(OtpActivity.this,"Clip" ,"false");
-                            Sharedprefs.sharedprefsave(getApplicationContext(), res.getUsername(),res.getToken(),res.getUserId());
+                            Sharedprefs.sharedprefsave(getApplicationContext(), res.getUsername(),res.getToken(),res.getUserId(),email);
                             Intent isverified = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(isverified);
                             finish();
