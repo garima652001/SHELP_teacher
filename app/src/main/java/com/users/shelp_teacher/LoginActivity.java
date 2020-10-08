@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), response.body().getMessage() + " " + response.body().getUsername() + " " + response.body().getToken(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), response.body().getMessage() , Toast.LENGTH_LONG).show();
                     String token = response.body().getToken();
                     Sharedprefs.saveSharedsetting(LoginActivity.this,"Clip" ,"false");
                     Sharedprefs.sharedprefsave(getApplicationContext(), response.body().getUsername(),token, response.body().getUserId(),emailtxt);

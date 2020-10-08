@@ -79,24 +79,28 @@ public class Homefragment extends Fragment {
                     }
                 } else {
                     try {
-                        Toast.makeText(getContext(),id,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),header,Toast.LENGTH_LONG).show();
                         String s = response.body().string();
                         JSONObject jsonObject = new JSONObject(s);
                         JSONArray array = jsonObject.getJSONArray("data");
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject obj = array.getJSONObject(i);
-                            double rating = obj.getDouble("rating");
+                            JSONObject objrating = obj.getJSONObject("rating");
+                            double rating = objrating.getDouble("ratingFinal");
                             String title = obj.getString("title");
                             String name = obj.getString("name");
                             String imgurl = obj.getString("imageurl");
                             imgurl="http://192.168.43.146:8080/"+imgurl ;
                             itemlist.add(new Model(imgurl, name, title, rating));
-
-                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+                           /* recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
                             Adapter adapter = new Adapter(itemlist);
                             recyclerView.setAdapter(adapter);
-                            adapter.notifyDataSetChanged();
+                            adapter.notifyDataSetChanged();*/
                         }
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+                        Adapter adapter = new Adapter(itemlist);
+                        recyclerView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
 
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
