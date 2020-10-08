@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="85dp"
-                android:layout_below="@+id/course_req"
+                android:layout_below="@+id/et_willlearn"
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/averia_gruesa_libre"
                 android:text="Choose files"
@@ -151,6 +151,53 @@
                 android:fontFamily="@font/droid_sans"
                 android:hint="Enter pre-requisites"
                 android:padding="10dp" />
+            <TextView
+                android:id="@+id/tv_deslong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/course_req"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/droid_sans"
+                android:text="Enter detailed description"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_longdes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_deslong"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background"
+                android:fontFamily="@font/droid_sans"
+                android:hint="Enter detailed description of your course(Optional)"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/tv_willlearn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_longdes"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/droid_sans"
+                android:text="What will learner learn from this course?"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_willlearn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_willlearn"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background"
+                android:fontFamily="@font/droid_sans"
+                android:hint="Enter what will a student learn(Optional)?"
+                android:padding="10dp" />
+
+
 
             <RelativeLayout
                 android:id="@+id/rlcategory"

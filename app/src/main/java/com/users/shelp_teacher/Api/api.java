@@ -57,6 +57,8 @@ public interface api {
             @Part("category") RequestBody category,
             @Part("_id") RequestBody _id,
             @Part("requirement") RequestBody requirement,
+            @Part("discriptionLong") RequestBody descriptionLong,
+            @Part("willLearn") RequestBody willlearn,
             @Part MultipartBody.Part image
     );
 

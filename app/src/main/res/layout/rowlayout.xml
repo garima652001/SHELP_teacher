@@ -61,9 +61,9 @@
                 android:layout_below="@+id/teachername"
                 android:layout_toRightOf="@+id/cimg"
                 android:numStars="5"
-                android:scaleX="0.25"
-                android:scaleY="0.35"
                 android:stepSize="0.1"
+                android:scaleX="0.40"
+                android:scaleY="0.40"
                 android:theme="@style/Widget.AppCompat.RatingBar" />
 
         </RelativeLayout>

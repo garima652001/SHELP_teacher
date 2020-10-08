@@ -49,10 +49,12 @@ public class Createfragment extends Fragment {
     private static final int MY_PERMISSIONS_REQUEST=100;
     View view;
     TextView path;
-    EditText et_name,et_title,et_description, et_req,user_id;
+    EditText et_name,et_title,et_description, et_req,user_id,et_desclong,et_learn;
     Button btn,button1,button2,button3,button4,button5,button6,upload;
     Context mcontext;
     String id;
+   String name,desc,title,req;
+    Boolean cat_selected=false;
     String category ;
     ProgressDialog progress;
     @Override
@@ -71,6 +73,10 @@ public class Createfragment extends Fragment {
         et_title=view.findViewById(R.id.course_title);
         et_description=view.findViewById(R.id.course_des);
         et_req=view.findViewById(R.id.course_req);
+        et_learn=view.findViewById(R.id.et_willlearn);
+        et_desclong=view.findViewById(R.id.et_longdes);
+
+
         upload=view.findViewById(R.id.btn_create);
         SharedPreferences preferences=getContext().getSharedPreferences("Id",0);
         user_id=view.findViewById(R.id.user_idpref);
@@ -90,6 +96,7 @@ public class Createfragment extends Fragment {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cat_selected=true;
                 category="Photography";
                 button1.setBackgroundResource(R.drawable.bg);
                 button2.setBackgroundResource(R.drawable.background);
@@ -102,6 +109,7 @@ public class Createfragment extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cat_selected=true;
                 category="Development";
                 button2.setBackgroundResource(R.drawable.bg);
                 button1.setBackgroundResource(R.drawable.background);
@@ -114,6 +122,7 @@ public class Createfragment extends Fragment {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cat_selected=true;
                 category="Designing";
                 button3.setBackgroundResource(R.drawable.bg);
                 button1.setBackgroundResource(R.drawable.background);
@@ -126,6 +135,7 @@ public class Createfragment extends Fragment {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cat_selected=true;
                 category="Machine Learning";
                 button4.setBackgroundResource(R.drawable.bg);
                 button1.setBackgroundResource(R.drawable.background);
@@ -138,6 +148,7 @@ public class Createfragment extends Fragment {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cat_selected=true;
                 category="React";
                 button5.setBackgroundResource(R.drawable.bg);
                 button1.setBackgroundResource(R.drawable.background);
@@ -150,6 +161,7 @@ public class Createfragment extends Fragment {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cat_selected=true;
                 category="Node JS";
                 button6.setBackgroundResource(R.drawable.bg);
                 button1.setBackgroundResource(R.drawable.background);
@@ -163,7 +175,7 @@ public class Createfragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),id,Toast.LENGTH_LONG).show();
+               // Toast.makeText(getContext(),id,Toast.LENGTH_LONG).show();
                 Intent myfileintent = new Intent();
                 myfileintent.setAction(Intent.ACTION_GET_CONTENT);
                 myfileintent.setType("*/*");
@@ -191,14 +203,42 @@ public class Createfragment extends Fragment {
             {
                 uri =data.getData();
             }
+
             upload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    progress= new ProgressDialog(getActivity());
-                    progress.setTitle("Uploading");
-                    progress.setMessage("Please Wait...");
-                    progress.show();
-                    uploadfile(uri);
+                    name=et_name.getText().toString();
+                    title=et_title.getText().toString();
+                    desc=et_description.getText().toString();
+                    req=et_req.getText().toString();
+                    if (name.isEmpty()) {
+                        et_name.setError("Enter your name");
+                        et_name.requestFocus();
+                    }
+                    else if (title.isEmpty()) {
+                        et_title.setError("Title is required");
+                        et_title.requestFocus();
+                    }
+                    else if (desc.isEmpty()) {
+                        et_description.setError("Description is required");
+                        et_description.requestFocus();
+                    }
+                  else if (req.isEmpty()) {
+                        et_req.setError("Enter requirements for the course");
+                        et_req.requestFocus();
+                    }
+                  else if(cat_selected==false)
+                    {
+                        Toast.makeText(getContext(),"Select course category",Toast.LENGTH_SHORT).show();
+                    }
+                        else
+                     {
+                        progress = new ProgressDialog(getActivity());
+                        progress.setTitle("Uploading");
+                        progress.setMessage("Please Wait...");
+                        progress.show();
+                        uploadfile(uri);
+                    }
                 }
             });
         }
@@ -225,6 +265,8 @@ public class Createfragment extends Fragment {
                 createStringPart(category),
                 createStringPart(id),
                 createStringPart(et_req.getText().toString()),
+                createStringPart(et_desclong.getText().toString()),
+                createStringPart(et_learn.getText().toString()),
                 preparefilePart("image",uri));
 
         call.enqueue(new Callback<CourseResponse>() {

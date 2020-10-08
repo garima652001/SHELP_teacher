@@ -39,6 +39,7 @@ public class Homefragment extends Fragment {
     RecyclerView recyclerView;
     List<Model> itemlist;
     String id;
+    String name;
     Button btn_createcourse;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +49,9 @@ public class Homefragment extends Fragment {
 
         SharedPreferences preferences = getContext().getSharedPreferences("Id", 0);
         id = preferences.getString("Id", null);
+
+        SharedPreferences preferences1 = getContext().getSharedPreferences("Name", 0);
+        name = preferences1.getString("Name", null);
         SharedPreferences preference = getContext().getSharedPreferences("Token", 0);
         final String header = "Bearer " + preference.getString("Token", null);
 
@@ -79,7 +83,7 @@ public class Homefragment extends Fragment {
                     }
                 } else {
                     try {
-                        Toast.makeText(getContext(),header,Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getContext(),header,Toast.LENGTH_LONG).show();
                         String s = response.body().string();
                         JSONObject jsonObject = new JSONObject(s);
                         JSONArray array = jsonObject.getJSONArray("data");
@@ -88,7 +92,6 @@ public class Homefragment extends Fragment {
                             JSONObject objrating = obj.getJSONObject("rating");
                             double rating = objrating.getDouble("ratingFinal");
                             String title = obj.getString("title");
-                            String name = obj.getString("name");
                             String imgurl = obj.getString("imageurl");
                             imgurl="http://192.168.43.146:8080/"+imgurl ;
                             itemlist.add(new Model(imgurl, name, title, rating));
