@@ -237,6 +237,7 @@ public class Createfragment extends Fragment {
                         progress.setTitle("Uploading");
                         progress.setMessage("Please Wait...");
                         progress.show();
+                         progress.setCancelable(false);
                         uploadfile(uri);
                     }
                 }
@@ -289,6 +290,7 @@ public class Createfragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
+
                 progress.dismiss();
             }
             @Override

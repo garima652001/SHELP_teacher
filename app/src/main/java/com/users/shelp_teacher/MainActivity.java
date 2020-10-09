@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.gdacciaro.iOSDialog.iOSDialog;
+import com.gdacciaro.iOSDialog.iOSDialogBuilder;
+import com.gdacciaro.iOSDialog.iOSDialogClickListener;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import com.users.shelp_teacher.Fragments.Createfragment;
 import com.users.shelp_teacher.Fragments.Homefragment;
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment= new Createfragment();
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).addToBackStack(null).commit();
             }
         });
     }
@@ -58,6 +61,40 @@ public class MainActivity extends AppCompatActivity {
         if(check){
             startActivity(intro);
         }
+    }
+    @Override
+    public void onBackPressed() {
+     ShowDiag();
+    }
+
+    private void ShowDiag() {
+        new iOSDialogBuilder(this)
+                .setTitle("Close App")
+                .setSubtitle("Do you want to exit?")
+                .setCancelable(false)
+                .setPositiveListener(getString(R.string.ok), new iOSDialogClickListener() {
+                    @Override
+                    public void onClick(iOSDialog dialog) {
+                        dialog.dismiss();
+                        CloseApp();
+                    }
+                })
+                .setNegativeListener(getString(R.string.dismiss), new iOSDialogClickListener() {
+                    @Override
+                    public void onClick(iOSDialog dialog) {
+                        dialog.dismiss();
+                    }
+                })
+                .build().show();
+    }
+
+
+    private void CloseApp() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        startActivity(intent);
+        int pid = android.os.Process.myPid();
+        android.os.Process.killProcess(pid);
     }
 
 }

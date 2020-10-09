@@ -64,6 +64,7 @@
                 android:layout_below="@+id/teachername"
                 android:layout_toRightOf="@+id/cimg"
                 android:numStars="5"
+                android:isIndicator="true"
                 android:stepSize="0.1"
                 android:scaleX="0.4"
                 android:scaleY="0.4"

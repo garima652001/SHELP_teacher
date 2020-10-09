@@ -27,11 +27,14 @@ public class SplashActivity extends AppCompatActivity {
             intro.putExtra("Clip",check);
 
             if(check){
+                finish();
                 startActivity(intro);
             }
             else{
                 Intent mainintent =new Intent(SplashActivity.this, MainActivity.class);
+                finish();
                 startActivity(mainintent);
             }
+
         }
     }

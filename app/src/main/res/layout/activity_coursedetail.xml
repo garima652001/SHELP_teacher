@@ -4,12 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Coursedetail">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="50dp">
 
 
     <ImageView
@@ -24,7 +25,8 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_margin="10dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="22dp"
         android:layout_marginTop="15dp"
         android:background="#B5B2B2"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,6 +67,7 @@
         android:scaleX="0.35"
         android:scaleY="0.35"
         android:stepSize="0.1"
+        android:isIndicator="true"
         android:theme="@style/RatingBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_ctitle" />
@@ -99,9 +102,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="35dp"
-        android:fontFamily="@font/droid_sans"
+        android:fontFamily="@font/averia_gruesa_libre"
         android:text="Created By"
         android:textSize="15sp"
+        android:textColor="#000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description" />
 
@@ -113,7 +117,6 @@
         android:layout_marginTop="5dp"
         android:fontFamily="@font/droid_sans"
         android:text="Teacher 1"
-        android:textColor="#000"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createdby" />
@@ -122,7 +125,7 @@
     <View
         android:id="@+id/backbrown"
         android:layout_width="match_parent"
-        android:layout_height="730dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="#3EE3E3E3"
         app:layout_constraintStart_toStartOf="parent"
@@ -134,6 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="45dp"
+        android:textColor="#000"
         android:fontFamily="@font/averia_gruesa_libre"
         android:text="Requirements of the course"
         android:textSize="21sp"
@@ -149,9 +153,20 @@
         android:layout_marginRight="15dp"
         android:fontFamily="@font/droid_sans"
         android:textSize="17sp"
-        android:textColor="#000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_require" />
+
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="22dp"
+        android:layout_marginTop="15dp"
+        android:background="#B5B2B2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/requiremnets" />
 
     <TextView
         android:id="@+id/tv_learn"
@@ -163,6 +178,7 @@
         android:fontFamily="@font/averia_gruesa_libre"
         android:text="What you will learn in this course"
         android:textSize="21sp"
+        android:textColor="#000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/requiremnets" />
 
@@ -172,12 +188,23 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="18dp"
-        android:textColor="#000"
         android:layout_marginRight="15dp"
         android:fontFamily="@font/droid_sans"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_learn" />
+
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="22dp"
+        android:layout_marginTop="15dp"
+        android:background="#B5B2B2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/willlearn" />
 
     <TextView
         android:id="@+id/tvdesc"
@@ -187,6 +214,7 @@
         android:layout_marginTop="45dp"
         android:fontFamily="@font/averia_gruesa_libre"
         android:text="Description"
+        android:textColor="#000"
         android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/willlearn" />
@@ -200,9 +228,26 @@
         android:layout_marginRight="15dp"
         android:fontFamily="@font/droid_sans"
         android:textSize="17sp"
-        android:textColor="#000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvdesc" />
 
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="22dp"
+        android:layout_marginTop="15dp"
+        android:background="#B5B2B2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/longdesc" />
+
+    <ProgressBar
+        android:id="@+id/progbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ctitle" />
+        android:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -102,6 +102,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                             Intent intent= new Intent(SignupActivity.this, OtpActivity.class);
                             intent.putExtra("Token",res.getToken());
                             intent.putExtra("email",email);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             Log.d("token", res.getToken());
                         } else {

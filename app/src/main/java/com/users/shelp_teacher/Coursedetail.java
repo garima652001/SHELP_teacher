@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +34,7 @@ public class Coursedetail extends AppCompatActivity {
     ImageView cimg1;
     String id,header,name;
     int pos;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,7 @@ public class Coursedetail extends AppCompatActivity {
         SharedPreferences preference = getApplicationContext().getSharedPreferences("Token", 0);
         header = "Bearer " + preference.getString("Token", null);
 
+        progressBar= findViewById(R.id.progbar2);
         title1 = findViewById(R.id.tv_ctitle);
         teacher1 = findViewById(R.id.creator);
         requirement1 = findViewById(R.id.requiremnets);
@@ -73,12 +77,14 @@ public class Coursedetail extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (!response.isSuccessful()) {
+                        progressBar.setVisibility(View.GONE);
                         try {
                             Toast.makeText(Coursedetail.this, response.errorBody().string(), Toast.LENGTH_LONG).show();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     } else {
+                        progressBar.setVisibility(View.GONE);
                         try {
                             // Toast.makeText(getContext(),header,Toast.LENGTH_LONG).show();
                             String s = response.body().string();
@@ -102,7 +108,10 @@ public class Coursedetail extends AppCompatActivity {
                             ratebar1.setRating((float) rating);
                             String starrate = Double.toString(rating);
                             title1.setText(title);
-                            Picasso.get().load(imgurl).into(cimg1);
+                            Picasso.get()
+                                    .load(imgurl)
+                                    .placeholder(R.drawable.ic_launcher_foreground)
+                                    .into(cimg1);
                             teacher1.setText(name);
                             rate1.setText(starrate);
                             requirement1.setText(req);
@@ -117,10 +126,10 @@ public class Coursedetail extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                progressBar.setVisibility(View.GONE);
                                 Toast.makeText(Coursedetail.this, t.getMessage(),Toast.LENGTH_LONG).show();
                             }
                         });
-
 
 
         }

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.users.shelp_teacher.Adapter;
@@ -41,6 +42,7 @@ public class Homefragment extends Fragment{
     String id;
     String name;
     Button btn_createcourse;
+    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +57,7 @@ public class Homefragment extends Fragment{
         name = preferences1.getString("Name", null);
         SharedPreferences preference = getContext().getSharedPreferences("Token", 0);
         final String header = "Bearer " + preference.getString("Token", null);
+        progressBar=view.findViewById(R.id.progbar1);
 
         btn_createcourse= view.findViewById(R.id.btn_directcreate);
         btn_createcourse.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +111,9 @@ public class Homefragment extends Fragment{
                             recyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();*/
                         }
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
+
                         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
                         Adapter adapter = new Adapter(itemlist,getContext());
                         recyclerView.setAdapter(adapter);
@@ -116,10 +122,15 @@ public class Homefragment extends Fragment{
                         e.printStackTrace();
                     }
 
-                }}
+                }
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
                 Toast.makeText(getContext(), t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });

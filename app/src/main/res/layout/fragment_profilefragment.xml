@@ -18,6 +18,14 @@
           android:textSize="28sp"
           android:textColor="#000"
           android:layout_marginTop="60dp"/>
+      <View
+          android:id="@+id/view"
+          android:layout_width="match_parent"
+          android:layout_height="0.5dp"
+          android:layout_marginHorizontal="45dp"
+          android:layout_marginTop="10dp"
+          android:background="#939191"
+          android:layout_below="@+id/profileheader"/>
 
       <ImageView
           android:id="@+id/teachericon"

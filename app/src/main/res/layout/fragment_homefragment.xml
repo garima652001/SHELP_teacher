@@ -57,7 +57,17 @@
             android:layout_marginTop="20dp"
             android:id="@+id/recyclerv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <ProgressBar
+            android:id="@+id/progbar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_mycourses"
+            android:layout_marginHorizontal="90dp"
+            android:layout_marginTop="120dp"
+            android:visibility="visible" />
 
     </RelativeLayout>
 

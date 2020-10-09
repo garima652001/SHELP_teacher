@@ -14,8 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Coursedetail"></activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Coursedetail"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity android:name=".MainActivity"
+           android:configChanges="orientation|screenSize|keyboardHidden"/>
+
         <activity android:name=".Resetpassword" />
         <activity android:name=".Resetotpcheck" />
         <activity android:name=".Resetotpsend" />

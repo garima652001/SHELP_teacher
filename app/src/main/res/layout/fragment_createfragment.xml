@@ -40,6 +40,7 @@
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/averia_gruesa_libre"
                 android:text="Choose files"
+                android:textColor="#fff"
                 android:background="@drawable/bg"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
@@ -53,6 +54,7 @@
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/averia_gruesa_libre"
                 android:text="Upload course"
+                android:textColor="#fff"
                 android:background="@drawable/bg"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
@@ -196,8 +198,6 @@
                 android:fontFamily="@font/droid_sans"
                 android:hint="Enter what will a student learn(Optional)?"
                 android:padding="10dp" />
-
-
 
             <RelativeLayout
                 android:id="@+id/rlcategory"
