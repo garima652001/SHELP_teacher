@@ -34,13 +34,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class Homefragment extends Fragment {
+public class Homefragment extends Fragment{
 
     RecyclerView recyclerView;
     List<Model> itemlist;
     String id;
     String name;
     Button btn_createcourse;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,22 +90,28 @@ public class Homefragment extends Fragment {
                         JSONArray array = jsonObject.getJSONArray("data");
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject obj = array.getJSONObject(i);
+
                             JSONObject objrating = obj.getJSONObject("rating");
                             double rating = objrating.getDouble("ratingFinal");
+
                             String title = obj.getString("title");
+
                             String imgurl = obj.getString("imageurl");
-                            imgurl="http://192.168.43.146:8080/"+imgurl ;
+                            imgurl="https://shelp-webapp.herokuapp.com/"+imgurl ;
+
                             itemlist.add(new Model(imgurl, name, title, rating));
+
+                           // String description= obj.getString("discription");
+                           // String req = obj.getString("requirement");
                            /* recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
                             Adapter adapter = new Adapter(itemlist);
                             recyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();*/
                         }
                         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-                        Adapter adapter = new Adapter(itemlist);
+                        Adapter adapter = new Adapter(itemlist,getContext());
                         recyclerView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
-
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
@@ -118,7 +125,4 @@ public class Homefragment extends Fragment {
         });
         return view;
     }
-
-
-
 }

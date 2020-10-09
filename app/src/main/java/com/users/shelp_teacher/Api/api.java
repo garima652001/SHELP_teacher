@@ -7,6 +7,7 @@ import com.users.shelp_teacher.Request.Resendotp;
 import com.users.shelp_teacher.Request.Resetotp;
 import com.users.shelp_teacher.Request.Resetpass;
 import com.users.shelp_teacher.Request.Signup;
+import com.users.shelp_teacher.Request.Uploadvid;
 import com.users.shelp_teacher.Request.Verify;
 import com.users.shelp_teacher.Response.CourseResponse;
 import com.users.shelp_teacher.Response.LoginResponse;
@@ -65,5 +66,7 @@ public interface api {
     @POST("teacher/uploads")
     Call<ResponseBody> mycourses(@Body Mycourses display, @Header("Authorization") String header);
 
+    @POST("creator/videoUpload/:videocourseID")
+    Call<ResponseBody> uploadVideo(@Body Uploadvid uploadvid);
 
 }

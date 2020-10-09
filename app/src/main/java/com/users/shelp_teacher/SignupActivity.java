@@ -8,6 +8,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.users.shelp_teacher.Api.Retroclient;
@@ -27,6 +28,7 @@ import retrofit2.Response;
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
 
+    ProgressBar progressbar;
     private EditText et_email, et_password, et_name, et_confirmpassword;
 
     @Override
@@ -38,6 +40,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         et_email = findViewById(R.id.etemail);
         et_password = findViewById(R.id.etpassword);
         et_confirmpassword = findViewById(R.id.etconfirmpassword);
+        progressbar=findViewById(R.id.progbar);
 
         findViewById(R.id.btnsignup).setOnClickListener(this);
         findViewById(R.id.tvlogin).setOnClickListener(this);
@@ -112,11 +115,13 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
+                    progressbar.setVisibility(View.GONE);
                 }
 
                 @Override
                 public void onFailure(Call<SignupResponse> call, Throwable t) {
                     Toast.makeText(SignupActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                    progressbar.setVisibility(View.GONE);
                 }
             });
         }
@@ -127,6 +132,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnsignup:
+                progressbar.setVisibility(View.VISIBLE);
                 signup();
                 break;
 

@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retroclient {
-        private static final String baseurl = "http://192.168.43.146:8080/";
+        private static final String baseurl = "https://shelp-webapp.herokuapp.com/";
 
         private static Retroclient m_instance;
         private Retrofit retrofit;
