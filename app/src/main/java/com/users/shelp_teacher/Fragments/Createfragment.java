@@ -2,11 +2,11 @@ package com.users.shelp_teacher.Fragments;
 
 import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -16,11 +16,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +32,6 @@ import com.gdacciaro.iOSDialog.iOSDialogClickListener;
 import com.users.shelp_teacher.Api.Retroclient;
 import com.users.shelp_teacher.FileUtils;
 import com.users.shelp_teacher.R;
-import com.users.shelp_teacher.Response.CourseResponse;
-import com.users.shelp_teacher.Response.Newcourse;
 import com.users.shelp_teacher.Videoactivity;
 
 import org.json.JSONException;
@@ -39,7 +39,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -63,6 +62,9 @@ public class Createfragment extends Fragment {
     Boolean cat_selected=false;
     String category ,courseid;
     ProgressDialog progress;
+    ImageView img;
+    Bitmap bitmap;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public class Createfragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.view=view;
         path=view.findViewById(R.id.filepath);
+        img=view.findViewById(R.id.imgpreview);
         btn=view.findViewById(R.id.btn_choose);
         et_name=view.findViewById(R.id.creatorname);
         et_title=view.findViewById(R.id.course_title);
@@ -208,6 +211,15 @@ public class Createfragment extends Fragment {
         if(resultCode==RESULT_OK&&requestCode==10&&data!=null) {
             {
                 uri =data.getData();
+
+                try {
+                    bitmap= MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
+                    img.setImageBitmap(bitmap);
+                    img.setVisibility(View.VISIBLE);
+                    btn.setEnabled(false);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             upload.setOnClickListener(new View.OnClickListener() {
@@ -314,6 +326,7 @@ public class Createfragment extends Fragment {
                 }catch (JSONException | IOException e){
                         e.printStackTrace();
                     }
+                    upload.setEnabled(false);
                 }
                 else{
                     try {

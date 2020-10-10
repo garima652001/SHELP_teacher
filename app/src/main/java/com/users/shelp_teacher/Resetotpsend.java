@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.users.shelp_teacher.Api.Retroclient;
@@ -27,12 +28,14 @@ public class Resetotpsend extends AppCompatActivity {
     String email;
     String token;
     private String res = "";
+    ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetotpsend);
         tv_emailadd = findViewById(R.id.etemailreset);
+        progress = findViewById(R.id.prog_email);
         findViewById(R.id.tv_login2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +54,7 @@ public class Resetotpsend extends AppCompatActivity {
                     tv_emailadd.requestFocus();
                     return;
                 } else {
+                    progress.setVisibility(View.VISIBLE);
                     sent();
 
 
@@ -71,13 +75,16 @@ public class Resetotpsend extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call1, Response<ResponseBody> response) {
                 try {
                     if (!response.isSuccessful()) {
-                        Toast.makeText(getApplicationContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+                        progress.setVisibility(View.GONE);
+                        //Toast.makeText(getApplicationContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
                         assert response.errorBody() != null;
                         String s = response.errorBody().string();
                         JSONObject jsonObject1 = new JSONObject(s);
                         String msg = jsonObject1.getString("msg");
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+
                     } else {
+                        progress.setVisibility(View.GONE);
                         assert response.body() != null;
                         String s = response.body().string();
                         JSONObject jsonObject = new JSONObject(s);
@@ -98,6 +105,7 @@ public class Resetotpsend extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call1, Throwable t) {
+                progress.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });

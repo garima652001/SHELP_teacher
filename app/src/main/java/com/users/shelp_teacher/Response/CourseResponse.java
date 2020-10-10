@@ -2,11 +2,10 @@ package com.users.shelp_teacher.Response;
 
 public class CourseResponse {
     String message;
-            private Newcourse newCourse;
 
-    public CourseResponse(String message, Newcourse newCourse) {
+
+    public CourseResponse(String message) {
         this.message = message;
-        this.newCourse = newCourse;
     }
 
     public String getMessage() {

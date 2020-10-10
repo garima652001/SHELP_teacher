@@ -70,6 +70,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etotpreset" />
 
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progreset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_requestotpcheck" />
+
     <TextView
         android:id="@+id/tv_login2"
         android:layout_width="wrap_content"

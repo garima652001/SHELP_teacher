@@ -12,15 +12,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gdacciaro.iOSDialog.iOSDialog;
+import com.gdacciaro.iOSDialog.iOSDialogBuilder;
+import com.gdacciaro.iOSDialog.iOSDialogClickListener;
 import com.users.shelp_teacher.LoginActivity;
 import com.users.shelp_teacher.R;
 import com.users.shelp_teacher.Sharedprefs;
+import com.users.shelp_teacher.Videoactivity;
 
 public class Profilefragment extends Fragment {
 
-    TextView t_name, t_email;
+        EditText t_name, t_email;
+        LinearLayout tvlogout;
     Button logout;
     View view;
 
@@ -41,15 +48,33 @@ public class Profilefragment extends Fragment {
         SharedPreferences preferences1 = getContext().getSharedPreferences("Email", 0);
         t_email = view.findViewById(R.id.teacheremail);
         t_email.setText(preferences1.getString("Email", null));
-        logout=view.findViewById(R.id.btn_logout);
-        logout.setOnClickListener(new View.OnClickListener() {
+        tvlogout=view.findViewById(R.id.tv_logout);
+        tvlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Sharedprefs.saveSharedsetting(getActivity(),"Clip","true");
-                Sharedprefs.sharedprefsave(getContext(),"","","","");
-                Intent signout = new Intent(getContext(), LoginActivity.class);
-                startActivity(signout);
-                getActivity().finish();
+                new iOSDialogBuilder(getContext())
+                        .setTitle("Logout")
+                        .setSubtitle("Are you sure to logout?")
+                        .setCancelable(false)
+                        .setPositiveListener(getString(R.string.ok), new iOSDialogClickListener() {
+                            @Override
+                            public void onClick(iOSDialog dialog) {
+                                dialog.dismiss();
+                                Sharedprefs.saveSharedsetting(getActivity(),"Clip","true");
+                                Sharedprefs.sharedprefsave(getContext(),"","","","");
+                                Intent signout = new Intent(getContext(), LoginActivity.class);
+                                startActivity(signout);
+                                getActivity().finish();
+                            }
+                        })
+                        .setNegativeListener(getString(R.string.dismiss), new iOSDialogClickListener() {
+                            @Override
+                            public void onClick(iOSDialog dialog) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .build().show();
+
             }
         });
 

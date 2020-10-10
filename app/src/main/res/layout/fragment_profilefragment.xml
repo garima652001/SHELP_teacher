@@ -3,9 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Profilefragment">
+    tools:context=".Fragments.Profilefragment"
+    android:background="#F6F6F5">
+    <LinearLayout
+        android:id="@+id/tv_shelp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="15dp">
 
-  <RelativeLayout
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_group_579"
+            android:paddingHorizontal="10dp"
+            android:scaleType="center"
+           />
+    </LinearLayout>
+
+
+    <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent">
       <TextView
@@ -14,7 +30,7 @@
           android:layout_height="wrap_content"
           android:text="Profile"
           android:layout_centerHorizontal="true"
-          android:fontFamily="@font/averia_gruesa_libre"
+          android:fontFamily="@font/droid_sans"
           android:textSize="28sp"
           android:textColor="#000"
           android:layout_marginTop="60dp"/>
@@ -32,50 +48,88 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_centerHorizontal="true"
-          android:layout_marginTop="50dp"
+          android:layout_marginTop="45dp"
           android:src="@drawable/ic_teacher_icon"
           android:layout_below="@id/profileheader"/>
 
-      <TextView
+        <TextView
+            android:id="@+id/namehead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/teachericon"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="50dp"
+            android:fontFamily="sans-serif-medium"
+            android:padding="10dp"
+            android:text="Name"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+
+        <EditText
           android:id="@+id/teachername"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="50dp"
-          android:layout_below="@+id/teachericon"
-          android:textSize="16sp"
-          android:fontFamily="@font/droid_sans"
-          android:textColor="#000"
-          android:padding="10dp"
-          android:layout_centerHorizontal="true"/>
-
-      <TextView
-          android:id="@+id/teacheremail"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="10dp"
-          android:layout_below="@+id/teachername"
-          android:textSize="16sp"
-          android:fontFamily="@font/droid_sans"
-          android:textColor="#000"
-          android:padding="10dp"
-          android:layout_centerHorizontal="true"/>
-
-
-      <Button
-          android:id="@+id/btn_logout"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="Log out"
-          android:layout_marginTop="100dp"
-          android:layout_marginHorizontal="90dp"
-          android:background="@drawable/bg"
-  android:layout_below="@id/teacheremail"
-          android:textColor="#fff"
-          android:textAllCaps="false"
-          android:textSize="18sp">
+          android:layout_marginTop="3dp"
+          android:layout_below="@+id/namehead"
+          android:textSize="16sp"
+          android:fontFamily="@font/droid_sans"
+          android:textColor="#000"
+          android:padding="10dp"
+            android:background="@drawable/etbg"
+            android:layout_marginHorizontal="15dp"
+         />
 
-      </Button>
+        <TextView
+            android:id="@+id/emailhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_below="@+id/teachername"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000"
+            android:padding="10dp"
+            android:text="Email"
+            android:layout_marginHorizontal="15dp"/>
 
+        <EditText
+          android:id="@+id/teacheremail"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="3dp"
+          android:layout_below="@+id/emailhead"
+          android:textSize="16sp"
+          android:fontFamily="@font/droid_sans"
+          android:textColor="#000"
+          android:padding="10dp"
+            android:background="@drawable/etbg"
+            android:layout_marginHorizontal="15dp"
+          />
+
+        <LinearLayout
+            android:id="@+id/tv_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="15dp"
+            android:layout_below="@id/teacheremail"
+            android:layout_marginTop="90dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_logout"
+                android:paddingHorizontal="10dp"
+                android:scaleType="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginLeft="15dp"
+                android:textSize="20sp"/>
+        </LinearLayout>
 
   </RelativeLayout>
 

@@ -36,15 +36,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="85dp"
-                android:layout_below="@+id/et_willlearn"
+                android:layout_below="@+id/imgpreview"
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/averia_gruesa_libre"
-                android:text="Choose files"
+                android:text="Select image"
                 android:textColor="#fff"
                 android:background="@drawable/bg"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
                 />
+
+            <ImageView
+                android:id="@+id/imgpreview"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@id/et_willlearn"
+                android:layout_marginHorizontal="40dp"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="40dp"
+                android:visibility="gone"/>
+
             <Button
                 android:id="@+id/btn_create"
                 android:layout_width="match_parent"
@@ -58,6 +69,7 @@
                 android:background="@drawable/bg"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
+                android:layout_marginBottom="30dp"
                 />
 
             <TextView

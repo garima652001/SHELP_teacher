@@ -9,8 +9,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
+import android.media.MediaPlayer;
 
 import com.users.shelp_teacher.Api.Retroclient;
 import com.users.shelp_teacher.Response.CourseResponse;
@@ -33,6 +36,9 @@ public class Videoactivity extends AppCompatActivity {
     VideoView video;
     String courseid;
     ProgressDialog progress;
+   // VideoView videoview;
+    //MediaController mcontroller;
+    TextView videopath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +48,11 @@ public class Videoactivity extends AppCompatActivity {
         selectvid = findViewById(R.id.btn_selv);
         uploadvid = findViewById(R.id.btn_uploadv);
         courseid = getIntent().getStringExtra("cid");
-        Toast.makeText(this, "on create "+courseid, Toast.LENGTH_SHORT).show();
-        selectvid.setOnClickListener(new View.OnClickListener() {
+        //videoview=findViewById(R.id.videoView);
+         videopath= findViewById(R.id.vidpath);
+
+      //  Toast.makeText(this, "on create "+courseid, Toast.LENGTH_SHORT).show();
+         selectvid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent vidintent = new Intent();
@@ -55,6 +64,7 @@ public class Videoactivity extends AppCompatActivity {
 
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -62,6 +72,8 @@ public class Videoactivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == 10 && data != null) {
             {
                 uri = data.getData();
+                videopath.setVisibility(View.VISIBLE);
+                videopath.setText(data.getData().getPath());
             }
             uploadvid.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -85,7 +97,7 @@ public class Videoactivity extends AppCompatActivity {
     }
 
     private void uploadfile(Uri uri) {
-        Toast.makeText(this, courseid, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, courseid, Toast.LENGTH_SHORT).show();
         Call<ResponseBody> call = Retroclient
                 .getInstance()
                 .getapi()

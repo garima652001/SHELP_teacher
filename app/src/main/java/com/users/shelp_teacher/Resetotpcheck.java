@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.users.shelp_teacher.Api.Retroclient;
@@ -27,12 +28,14 @@ public class Resetotpcheck extends AppCompatActivity {
     EditText et_otpreset;
     String email;
     String otp;
+    ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetotpcheck);
         et_otpreset = findViewById(R.id.etotpreset);
+        progress= findViewById(R.id.progreset);
         token = getIntent().getStringExtra("token");
         email = getIntent().getStringExtra("email");
         findViewById(R.id.btn_requestotpcheck).setOnClickListener(new View.OnClickListener() {
@@ -43,6 +46,7 @@ public class Resetotpcheck extends AppCompatActivity {
                     et_otpreset.setError("Email cannot be empty");
                     et_otpreset.requestFocus();
                 } else {
+                    progress.setVisibility(View.VISIBLE);
                     sent();
                 }
             }
@@ -69,26 +73,30 @@ public class Resetotpcheck extends AppCompatActivity {
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
-                } else {
+                    progress.setVisibility(View.GONE);
+                }
+                else {
                     try {
                         assert response.body() != null;
                         String str = response.body().string();
                         Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
-                        if (str.equalsIgnoreCase("\"Otp verified\"")) {
+
                             Intent intent = new Intent(Resetotpcheck.this, Resetpassword.class);
                             intent.putExtra("email", email);
                             finish();
                             startActivity(intent);
-                        }
+                        
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    progress.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                progress.setVisibility(View.GONE);
             }
         });
     }

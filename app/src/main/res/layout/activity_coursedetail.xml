@@ -57,21 +57,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_ctitle" />
 
+
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="192dp"
+        android:layout_marginTop="4dp"
+        android:isIndicator="true"
         android:numStars="5"
         android:scaleX="0.35"
         android:scaleY="0.35"
         android:stepSize="0.1"
-        android:isIndicator="true"
         android:theme="@style/RatingBar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_ctitle" />
-
 
     <View
         android:id="@+id/view1"
@@ -246,8 +245,9 @@
         android:id="@+id/progbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_ctitle" />
-        android:visibility="visible" />
+    android:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
