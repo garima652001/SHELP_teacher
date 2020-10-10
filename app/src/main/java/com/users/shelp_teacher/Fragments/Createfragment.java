@@ -24,10 +24,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gdacciaro.iOSDialog.iOSDialog;
+import com.gdacciaro.iOSDialog.iOSDialogBuilder;
+import com.gdacciaro.iOSDialog.iOSDialogClickListener;
 import com.users.shelp_teacher.Api.Retroclient;
 import com.users.shelp_teacher.FileUtils;
 import com.users.shelp_teacher.R;
 import com.users.shelp_teacher.Response.CourseResponse;
+import com.users.shelp_teacher.Response.Newcourse;
+import com.users.shelp_teacher.Videoactivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +44,7 @@ import java.util.ArrayList;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,7 +61,7 @@ public class Createfragment extends Fragment {
     String id;
    String name,desc,title,req;
     Boolean cat_selected=false;
-    String category ;
+    String category ,courseid;
     ProgressDialog progress;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -259,7 +265,7 @@ public class Createfragment extends Fragment {
     }
 
     private void uploadfile(Uri uri) {
-        Call<CourseResponse> call= Retroclient.getInstance().getapi().uploadPhoto(
+        Call<ResponseBody> call= Retroclient.getInstance().getapi().uploadPhoto(
                 createStringPart(et_name.getText().toString()),
                 createStringPart(et_title.getText().toString()),
                 createStringPart(et_description.getText().toString()),
@@ -270,12 +276,44 @@ public class Createfragment extends Fragment {
                 createStringPart(et_learn.getText().toString()),
                 preparefilePart("image",uri));
 
-        call.enqueue(new Callback<CourseResponse>() {
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<CourseResponse> call, Response<CourseResponse> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful()){
-                    CourseResponse res= response.body();
-                    Toast.makeText(getContext(),res.getMessage(),Toast.LENGTH_LONG).show();
+                    try{
+                   // final ResponseBody res= response.body();
+
+                    String string = response.body().string();
+                    JSONObject jsonObject1 = new JSONObject(string);
+                    String msg = jsonObject1.getString("message");
+                    JSONObject idobj= jsonObject1.getJSONObject("newCourse");
+                    courseid = idobj.getString("_id");
+                    //Toast.makeText(getContext(),response.body().toString(),Toast.LENGTH_LONG).show();
+                    //courseid= Newcourse.get_id();
+                    new iOSDialogBuilder(getContext())
+                            .setTitle("Upload video")
+                            .setSubtitle("Course is successfully uploaded. Do you wish to add video(s)?")
+                            .setCancelable(false)
+                            .setPositiveListener(getString(R.string.ok), new iOSDialogClickListener() {
+                                @Override
+                                public void onClick(iOSDialog dialog) {
+                                    Intent vidintent = new Intent(getActivity(), Videoactivity.class);
+                                    vidintent.putExtra("cid",courseid);
+                                    startActivity(vidintent);
+                                    dialog.dismiss();
+                                }
+                            })
+                            .setNegativeListener(getString(R.string.no), new iOSDialogClickListener() {
+                                @Override
+                                public void onClick(iOSDialog dialog) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .build().show();
+                   Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
+                }catch (JSONException | IOException e){
+                        e.printStackTrace();
+                    }
                 }
                 else{
                     try {
@@ -294,7 +332,7 @@ public class Createfragment extends Fragment {
                 progress.dismiss();
             }
             @Override
-            public void onFailure(Call<CourseResponse> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage(),Toast.LENGTH_LONG).show();
                 progress.dismiss();
             }

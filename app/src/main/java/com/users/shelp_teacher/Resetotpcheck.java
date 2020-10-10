@@ -84,13 +84,11 @@ public class Resetotpcheck extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-
-
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "failure:" + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

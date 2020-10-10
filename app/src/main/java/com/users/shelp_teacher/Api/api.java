@@ -25,6 +25,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface api {
 
@@ -51,7 +52,7 @@ public interface api {
 
     @Multipart
     @POST("creator/create-course")
-    Call<CourseResponse> uploadPhoto(
+    Call<ResponseBody> uploadPhoto(
             @Part("name") RequestBody name,
             @Part("title") RequestBody title,
             @Part("discription") RequestBody description,
@@ -66,7 +67,10 @@ public interface api {
     @POST("teacher/uploads")
     Call<ResponseBody> mycourses(@Body Mycourses display, @Header("Authorization") String header);
 
-    @POST("creator/videoUpload/:videocourseID")
-    Call<ResponseBody> uploadVideo(@Body Uploadvid uploadvid);
+    @Multipart
+    @POST("creator/videoUpload/{videocourseID}")
+    Call<ResponseBody> uploadVideo(
+            @Path("videocourseID") String courseid,
+            @Part MultipartBody.Part video);
 
 }

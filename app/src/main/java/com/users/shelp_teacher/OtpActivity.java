@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.users.shelp_teacher.Api.Retroclient;
@@ -24,6 +25,8 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
     EditText et_otp;
     String token,email;
     TextView resend;
+    ProgressBar progressbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,8 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
         token = intent.getStringExtra("Token");
         email=intent.getStringExtra("email");
         et_otp= findViewById(R.id.etotp);
+        progressbar= findViewById(R.id.progbarotp);
+
         findViewById(R.id.btn_confirmemail).setOnClickListener(this);
         findViewById(R.id.tv_login1).setOnClickListener(this);
         findViewById(R.id.tvresend_otp).setOnClickListener(this);
@@ -43,6 +48,7 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
         switch(v.getId())
         {
             case R.id.btn_confirmemail:
+                progressbar.setVisibility(View.VISIBLE);
                 verify();
                 break;
 
@@ -110,6 +116,7 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
                 public void onResponse(Call<OtpResponse> call, Response<OtpResponse> response) {
                     try {
                         if (response.code() == 200) {
+                            progressbar.setVisibility(View.GONE);
                             OtpResponse res = response.body();
                             Toast.makeText(OtpActivity.this, res.getMessage(), Toast.LENGTH_LONG).show();
                             Sharedprefs.saveSharedsetting(OtpActivity.this,"Clip" ,"false");
@@ -118,6 +125,7 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
                             startActivity(isverified);
                             finish();
                         } else {
+                            progressbar.setVisibility(View.GONE);
                             String s = response.errorBody().string();
                             JSONObject jsonObject = new JSONObject(s);
                             String message = jsonObject.getString("message");
@@ -130,6 +138,7 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
 
                 @Override
                 public void onFailure(Call<OtpResponse> call, Throwable t) {
+                    progressbar.setVisibility(View.GONE);
                     Toast.makeText(OtpActivity.this, t.getMessage(),Toast.LENGTH_LONG).show();
 
                 }

@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.users.shelp_teacher.Api.Retroclient;
@@ -29,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText email, password;
     Button login;
     String emailtxt, passwordtxt ;
+    ProgressBar progressbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +39,12 @@ public class LoginActivity extends AppCompatActivity {
         login = findViewById(R.id.button);
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPass);
+        progressbar=findViewById(R.id.progbarlogin);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                progressbar.setVisibility(View.VISIBLE);
                 LoginUser();
             }
         });
@@ -97,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (!response.isSuccessful()) {
+                    progressbar.setVisibility(View.GONE);
                     try {
                         String string = response.errorBody().string();
                         JSONObject jsonObject1 = new JSONObject(string);
@@ -111,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 } else {
+                    progressbar.setVisibility(View.GONE);
                     Toast.makeText(getApplicationContext(), response.body().getMessage() , Toast.LENGTH_LONG).show();
                     String token = response.body().getToken();
                     Sharedprefs.saveSharedsetting(LoginActivity.this,"Clip" ,"false");
@@ -124,6 +130,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                progressbar.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
 
             }
