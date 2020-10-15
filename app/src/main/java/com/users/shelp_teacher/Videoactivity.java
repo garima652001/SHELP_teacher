@@ -72,8 +72,8 @@ public class Videoactivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == 10 && data != null) {
             {
                 uri = data.getData();
-                videopath.setVisibility(View.VISIBLE);
-                videopath.setText(data.getData().getPath());
+                //videopath.setVisibility(View.VISIBLE);
+                //videopath.setText(data.getData().getPath());
             }
             uploadvid.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -107,14 +107,10 @@ public class Videoactivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful()) {
-                    try {
-                        String res = response.body().toString();
-                        JSONObject obj = new JSONObject(res);
-                        String res1= obj.getString("message");
+                        //String res = response.body().toString();
+                        //JSONObject obj = new JSONObject(res);
+                       // String res1= obj.getString("message");
                         Toast.makeText(Videoactivity.this,"Video successfully added",Toast.LENGTH_LONG).show();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
                     progress.dismiss();
 
                 }

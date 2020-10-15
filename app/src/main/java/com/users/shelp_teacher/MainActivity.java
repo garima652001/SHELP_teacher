@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void checkuser()
+   /* public void checkuser()
     {
         Boolean check= Boolean.valueOf(Sharedprefs.readShared(MainActivity.this,"Clip","true"));
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         if(check){
             startActivity(intro);
         }
-    }
+    }*/
     @Override
     public void onBackPressed() {
      ShowDiag();
